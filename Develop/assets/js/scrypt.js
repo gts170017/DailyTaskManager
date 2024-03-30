@@ -115,8 +115,23 @@ function handleDrop(event, ui) {
   // Remove the dragged task card from its original position
   ui.draggable.remove();
 
-  // Append the dragged task card to the target column's card container
-  $(`#${newStatus}-cards`).append(ui.draggable);
+  // Create a new task card with the updated status
+  const updatedTask = taskList.find((task) => task.id === parseInt(taskId));
+  const taskCard = createTaskCard(updatedTask);
+
+  // Append the new task card to the target column's card container
+  $(`#${newStatus}-cards`).append(taskCard);
+
+  // Reinitialize the draggable functionality on the new task card
+  taskCard.draggable({
+    revert: "invalid",
+    start: function () {
+      $(this).addClass("dragging");
+    },
+    stop: function () {
+      $(this).removeClass("dragging");
+    },
+  });
 }
 
 // When the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker

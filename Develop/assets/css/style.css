@@ -23,7 +23,7 @@ header {
   padding: 10px;
   margin-bottom: 20px;
   position: relative;
-  z-index: 0;
+  z-index: 0; /* Decreased z-index for .lane */
 }
 
 .lane h2 {
@@ -39,11 +39,14 @@ header {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: grab;
   position: relative;
-  z-index: 1;
+  z-index: 5; /* Increased z-index for .task-card */
+  font-size: 16px;
+  color: #212529;
 }
 
 .task-card:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 5;
 }
 
 .task-card .card-title {
