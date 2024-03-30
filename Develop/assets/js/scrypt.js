@@ -149,12 +149,30 @@ $(document).ready(function () {
 
   $(".task-card").draggable({
     revert: "invalid",
-    start: function () {
+    start: function (event, ui) {
       $(this).addClass("dragging");
+  
+      // Get the original position of the task card within the column
+      const $taskCard = $(this);
+      const $column = $taskCard.closest(".lane");
+      const columnOffset = $column.offset().top;
+      const taskCardOffset = $taskCard.offset().top;
+      const taskCardOffsetFromColumnTop = taskCardOffset - columnOffset;
+  
+      // Set the position of the helper to be absolute so it can be placed anywhere on the page
+      const scrollTop = $(window).scrollTop();
+      const top = ui.offset.top - scrollTop + taskCardOffsetFromColumnTop;
+      const left = ui.offset.left;
+      ui.helper.css({
+        top: top,
+        left: left,
+        position: "absolute"
+      });
     },
     stop: function () {
       $(this).removeClass("dragging");
     },
+    cursor: "grabbing"
   });
 
   $("#task-due-date").datepicker({

@@ -54,9 +54,8 @@ header {
 .task-card.dragging {
   z-index: 3;
   position: absolute;
-  left: 0;
-  top: 0;
   margin: 20px;
+  cursor: grabbing;
 }
 
 .task-card:hover {
