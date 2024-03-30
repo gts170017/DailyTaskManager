@@ -1,18 +1,111 @@
 body {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-  }
-  
-  .swim-lanes {
-    min-height: 60vh;
-  }
-  
-  .task-card {
-    margin: 0 auto;
-  }
-  
-  .task-card:hover {
-    cursor: grab;
-  }
-  
-  
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  background-color: #f8f9fa;
+}
+
+header {
+  background-color: #b4b895ef;
+  color: #fff;
+}
+
+.container {
+  margin-top: 30px;
+}
+
+.swim-lanes {
+  min-height: 60vh;
+}
+
+.lane {
+  background-color: #e9ecef;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 0;
+}
+
+.lane h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.task-card {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: grab;
+  position: relative;
+  z-index: 1;
+}
+
+.task-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.task-card .card-title {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.task-card .card-text {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.task-card .delete-task {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 12px;
+  padding: 2px 5px;
+}
+
+.modal-title {
+  font-size: 20px;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.task-card.bg-warning {
+  background-color: #ffeeba;
+}
+
+.task-card.bg-danger {
+  background-color: #f8d7da;
+}

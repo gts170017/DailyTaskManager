@@ -85,11 +85,13 @@ function handleAddTask(event) {
     taskList.push(newTask);
     localStorage.setItem("tasks", JSON.stringify(taskList));
   
-    $("#task-form")[0].reset();
+    $("#add-task-form")[0].reset();
     $("#formModal").modal("hide");
   
     renderTaskList();
   }
+
+
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event) {
     const taskId = $(event.target).closest(".task-card").attr("data-id");
@@ -99,30 +101,48 @@ function handleDeleteTask(event) {
   }
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
-    const taskId = ui.draggable.attr("data-id");
-    const newStatus = $(this).attr("id").split("-")[0];
-  
-    taskList.forEach(function (task) {
-      if (task.id === parseInt(taskId)) {
-        task.status = newStatus;
-      }
-    });
-  
-    localStorage.setItem("tasks", JSON.stringify(taskList));
-    renderTaskList();
-  }
-// Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
-$(document).ready(function () {
-    renderTaskList();
-  
-    $("#add-task-form").on("submit", handleAddTask);
-  
-    $(".lane").droppable({
-      accept: ".task-card",
-      drop: handleDrop,
-    });
-  
-    $("#task-due-date").datepicker({
-      dateFormat: "yy-mm-dd",
-    });
+  const taskId = ui.draggable.attr("data-id");
+  const newStatus = $(this).attr("id");
+
+  taskList.forEach(function (task) {
+    if (task.id === parseInt(taskId)) {
+      task.status = newStatus;
+    }
   });
+
+  localStorage.setItem("tasks", JSON.stringify(taskList));
+
+  // Remove the dragged task card from its original position
+  ui.draggable.remove();
+
+  // Append the dragged task card to the target column's card container
+  $(`#${newStatus}-cards`).append(ui.draggable);
+}
+
+// When the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
+$(document).ready(function () {
+  renderTaskList();
+
+  $("#add-task-form").on("submit", handleAddTask);
+
+  $(".lane").droppable({
+    accept: ".task-card",
+    drop: handleDrop,
+    tolerance: "pointer",
+    hoverClass: "highlight",
+  });
+
+  $(".task-card").draggable({
+    revert: "invalid",
+    start: function () {
+      $(this).addClass("dragging");
+    },
+    stop: function () {
+      $(this).removeClass("dragging");
+    },
+  });
+
+  $("#task-due-date").datepicker({
+    dateFormat: "yy-mm-dd",
+  });
+});
