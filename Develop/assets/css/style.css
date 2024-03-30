@@ -1,7 +1,7 @@
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
-  background-color: #f8f9fa;
+  background-color: #727272;
 }
 
 header {
@@ -11,10 +11,14 @@ header {
 
 .container {
   margin-top: 30px;
+  position: relative;
 }
 
 .swim-lanes {
   min-height: 60vh;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 
 .lane {
@@ -23,7 +27,12 @@ header {
   padding: 10px;
   margin-bottom: 20px;
   position: relative;
-  z-index: 0; /* Decreased z-index for .lane */
+  flex: 1;
+  margin-right: 20px;
+}
+
+.lane:last-child {
+  margin-right: 0;
 }
 
 .lane h2 {
@@ -39,14 +48,19 @@ header {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: grab;
   position: relative;
-  z-index: 5; /* Increased z-index for .task-card */
-  font-size: 16px;
-  color: #212529;
+  z-index: 1;
+}
+
+.task-card.dragging {
+  z-index: 3;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 20px;
 }
 
 .task-card:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 5;
 }
 
 .task-card .card-title {
@@ -75,35 +89,6 @@ header {
   font-weight: bold;
 }
 
-.btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
-}
-
-.btn-primary:hover {
-  background-color: #0069d9;
-  border-color: #0062cc;
-}
-
-.btn-success {
-  background-color: #28a745;
-  border-color: #28a745;
-}
-
-.btn-success:hover {
-  background-color: #218838;
-  border-color: #1e7e34;
-}
-
-.btn-danger {
-  background-color: #dc3545;
-  border-color: #dc3545;
-}
-
-.btn-danger:hover {
-  background-color: #c82333;
-  border-color: #bd2130;
-}
 
 .task-card.bg-warning {
   background-color: #ffeeba;
