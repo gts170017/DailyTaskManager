@@ -1,1 +1,3 @@
 # DailyTaskManager
+
+Task Board is a simple Kanban board web application for task management. It features a familiar layout with "To Do," "In Progress," and "Done" lanes to visualize task progress. In addition to the basic structure, I worked extensively on adding JavaScript functionality for creating, dragging and dropping, deleting tasks, and color-coding based on due dates. Significant CSS adjustments were made to ensure a responsive design, proper positioning of task cards during drag and drop, and visual enhancements. Task Board leverages HTML, CSS, JavaScript, jQuery, Bootstrap, and jQuery UI to provide an intuitive and interactive task management solution.
